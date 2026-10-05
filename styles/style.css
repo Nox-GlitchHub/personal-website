@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background-color: #fdf6ee;
+  color: #4a3728;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  background-color: #9c6b46;
+  padding: 12px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #6b4430;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #5a3826;
+}
+
+nav a:hover,
+nav a:active {
+  background-color: #4a2d1c;
+}
+
+main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+h1 {
+  margin-bottom: 12px;
+}
+
+/* Home */
+.hero {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.hero h1 {
+  font-size: 2rem;
+}
+
+.profile-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #9c6b46;
+  margin-bottom: 16px;
+}
+
+.tagline {
+  color: #8a6f5a;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.buttons {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn {
+  background-color: #9c6b46;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 2px solid #9c6b46;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #7f553a;
+}
+
+/* About */
+.about-card {
+  background-color: #fffaf5;
+  border: 1px solid #ecd9c6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.about-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #7f553a;
+}
+
+.about-card ul {
+  padding-left: 20px;
+}
+
+/* Portfolio */
+.project-card {
+  background-color: #fffaf5;
+  border: 1px solid #ecd9c6;
+  border-left: 6px solid #9c6b46;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.project-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #7f553a;
+}
+
+.project-card .btn {
+  display: inline-block;
+  margin-top: 12px;
+}
+
+/* Gallery */
+.gallery-title {
+  margin-top: 24px;
+  color: #7f553a;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.gallery figure,
+.video-list figure {
+  background-color: #fffaf5;
+  border: 1px solid #ecd9c6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.gallery img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.video-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.video-list video {
+  width: 100%;
+  display: block;
+}
+
+figcaption {
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #8a6f5a;
+}
+
+/* Contact */
+.contact-list {
+  list-style: none;
+  margin-top: 16px;
+}
+
+.contact-list li {
+  background-color: #fffaf5;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ecd9c6;
+}
+
+.contact-list a {
+  color: #8a4b2f;
+}
+
+.form-title {
+  margin-top: 32px;
+  color: #7f553a;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #4a3728;
+  border: 1px solid #ecd9c6;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 3px solid #9c6b46;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #9c6b46;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  }
