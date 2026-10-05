@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order of the Round Table — Registry</title>
+<style>
+  :root{
+    --ink:#12100c;
+    --charcoal:#1c1812;
+    --gold:#c9a24a;
+    --gold-bright:#e6c463;
+    --bronze:#8a6a3a;
+    --parchment:#efe4c8;
+    --parchment-dim:#d8c9a0;
+    --steel:#3a352c;
+    --status-active:#5c7a4a;
+    --status-pending:#a67c2e;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family:Georgia, 'Times New Roman', serif;
+    color:var(--parchment);
+    background-image:
+      linear-gradient(180deg, rgba(10,9,6,0.80) 0%, rgba(10,9,6,0.55) 30%, rgba(10,9,6,0.80) 100%),
+      url("KnightHonor.jpeg"); src = /storage/emulated/0/Download/KnightHonor.jpeg
+
+    background-size: cover;
+    background-position: center 20%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding: 32px 24px 24px;
+  }
+
+  .crest-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin: 6px 0 0;
+  }
+  .crest-divider .line{
+    height:1px;
+    width:80px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .crest-divider .mark{
+    color:var(--gold);
+    font-size:1.1rem;
+    letter-spacing:2px;
+  }
+
+  header{
+    text-align:center;
+    max-width:1100px;
+    margin: 0 auto 28px;
+  }
+
+  header h1{
+    margin:0;
+    font-size:clamp(2rem, 4vw, 3rem);
+    letter-spacing:6px;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+    font-weight:700;
+  }
+
+  header p.subtitle{
+    margin:10px 0 0;
+    font-style:italic;
+    color:var(--parchment-dim);
+    font-size:1.05rem;
+    letter-spacing:1px;
+  }
+
+  main{
+    max-width:1200px;
+    margin: 0 auto;
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    align-items:flex-start;
+    justify-content:center;
+  }
+
+  .panel{
+    background: linear-gradient(180deg, rgba(28,24,18,0.92), rgba(18,16,12,0.94));
+    border: 1px solid var(--bronze);
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+    padding: 26px 28px;
+  }
+
+  .panel h2{
+    margin: 0 0 4px;
+    font-size:1.35rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .panel .panel-caption{
+    margin:0 0 18px;
+    font-size:0.85rem;
+    color:var(--parchment-dim);
+    font-style:italic;
+  }
+
+  /* ---------- FORM ---------- */
+  #registration-form{
+    flex: 1 1 380px;
+    max-width:420px;
+  }
+
+  .field{
+    margin-bottom:16px;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .field label{
+    font-size:0.85rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    margin-bottom:6px;
+  }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field select,
+  .field textarea{
+    background: rgba(239,228,200,0.06);
+    border: 1px solid var(--steel);
+    border-radius:4px;
+    padding:10px 12px;
+    color:var(--parchment);
+    font-family:Georgia, serif;
+    font-size:0.95rem;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder{
+    color: rgba(216,201,160,0.45);
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus,
+  .field input:focus-visible,
+  .field select:focus-visible,
+  .field textarea:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+    border-color: var(--gold);
+  }
+
+  .field textarea{
+    resize:vertical;
+    min-height:80px;
+  }
+
+  .radio-row{
+    display:flex;
+    gap:24px;
+    margin-top:4px;
+  }
+
+  .radio-row label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:0.95rem;
+    color:var(--parchment);
+  }
+
+  .radio-row input[type="radio"]{
+    accent-color: var(--gold);
+  }
+
+  .btn-row{
+    display:flex;
+    gap:14px;
+    margin-top:22px;
+  }
+
+  button{
+    font-family:Georgia, serif;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-size:0.85rem;
+    padding:11px 22px;
+    border-radius:4px;
+    cursor:pointer;
+    border:1px solid var(--gold);
+  }
+
+  #btn-register{
+    background: linear-gradient(180deg, var(--gold-bright), var(--bronze));
+    color:var(--ink);
+    font-weight:bold;
+  }
+
+  #btn-register:hover{
+    filter:brightness(1.08);
+  }
+
+  #btn-clear{
+    background:transparent;
+    color:var(--gold-bright);
+  }
+
+  #btn-clear:hover{
+    background: rgba(201,162,74,0.12);
+  }
+
+  /* ---------- TABLE ---------- */
+  .table-panel{
+    flex: 2 1 560px;
+    max-width:760px;
+    overflow-x:auto;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.92rem;
+  }
+
+  caption{
+    caption-side: top;
+    text-align:left;
+    font-size:1.1rem;
+    letter-spacing:1px;
+    color:var(--gold);
+    margin-bottom:12px;
+    font-weight:bold;
+  }
+
+  thead th{
+    background: linear-gradient(180deg, var(--bronze), #5f4a28);
+    color:var(--parchment);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    font-size:0.8rem;
+    padding:10px 12px;
+    text-align:left;
+    border-bottom:2px solid var(--gold);
+  }
+
+  tbody td{
+    padding:10px 12px;
+    border-bottom:1px solid rgba(138,106,58,0.35);
+  }
+
+  tbody tr:nth-child(even){
+    background: rgba(239,228,200,0.04);
+  }
+
+  tbody tr:hover{
+    background: rgba(201,162,74,0.10);
+  }
+
+  .status{
+    display:inline-block;
+    padding:3px 10px;
+    border-radius:12px;
+    font-size:0.78rem;
+    letter-spacing:0.5px;
+    text-transform:uppercase;
+  }
+
+  .status.active{
+    background: rgba(92,122,74,0.25);
+    color:#9fd487;
+    border:1px solid var(--status-active);
+  }
+
+  .status.pending{
+    background: rgba(166,124,46,0.25);
+    color:#e3b95c;
+    border:1px solid var(--status-pending);
+  }
+
+  .status.squire{
+    background: rgba(138,106,58,0.25);
+    color:var(--parchment-dim);
+    border:1px solid var(--bronze);
+  }
+
+  /* ---------- INFO BAR ---------- */
+  .info-bar{
+    max-width:1200px;
+    margin: 26px auto 0;
+    border-left: 4px solid var(--gold);
+    background: rgba(18,16,12,0.85);
+    padding: 14px 20px;
+    font-size:0.9rem;
+    color:var(--parchment-dim);
+  }
+
+  .info-bar strong{
+    color:var(--gold-bright);
+    display:block;
+    margin-bottom:4px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    font-size:0.85rem;
+  }
+
+  footer{
+    max-width:1200px;
+    margin: 24px auto 0;
+    text-align:center;
+    padding-top:16px;
+    border-top:1px solid var(--bronze);
+    color:var(--parchment-dim);
+    letter-spacing:1px;
+    font-size:0.9rem;
+  }
+
+  @media (max-width: 760px){
+    main{ flex-direction:column; align-items:stretch; }
+    #registration-form, .table-panel{ max-width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Order of the Round Table</h1>
+    <p class="subtitle">Registry of Knights &amp; Squires</p>
+    <div class="crest-divider"><span class="line"></span><span class="mark">&#9876;</span><span class="line"></span></div>
+  </header>
+
+  <main>
+    <section class="panel" aria-labelledby="form-heading">
+      <h2 id="form-heading">Knightly Oath &amp; Enlistment</h2>
+      <p class="panel-caption">Complete the form to be inducted into the Order.</p>
+
+      <form id="registration-form">
+        <div class="field">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Correspondence (Email)</label>
+          <input type="email" id="email" name="email" placeholder="knight@order.com" required>
+        </div>
+
+        <div class="field">
+          <label for="knight-id">Knight ID</label>
+          <input type="text" id="knight-id" name="knight-id" placeholder="Enter your Knight ID" required>
+        </div>
+
+        <div class="field">
+          <label for="house">Sworn House</label>
+          <select id="house" name="house" required>
+            <option value="" selected disabled>— Select House —</option>
+            <option value="house-lion">House of the Lion</option>
+            <option value="house-hawk">House of the Hawk</option>
+            <option value="house-wolf">House of the Wolf</option>
+            <option value="house-stag">House of the Stag</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Rank</label>
+          <div class="radio-row">
+            <label><input type="radio" name="rank" value="squire" checked> Squire</label>
+            <label><input type="radio" name="rank" value="knight"> Knight</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="oath">Oath / Message</label>
+          <textarea id="oath" name="oath" placeholder="Speak your oath..."></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="submit" id="btn-register">Swear the Oath</button>
+          <button type="reset" id="btn-clear">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel table-panel" aria-labelledby="table-heading">
+      <h2 id="table-heading" class="visually-hidden" style="display:none;">Roster of the Order</h2>
+      <table>
+        <caption>Roll of the Order — Registered Knights</caption>
+        <thead>
+          <tr>
+            <th scope="col">Knight ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">House</th>
+            <th scope="col">Correspondence</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>K-2026-001</td>
+            <td>Gareth of the Lion</td>
+            <td>House of the Lion</td>
+            <td>gareth@order.com</td>
+            <td><span class="status active">Active</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-002</td>
+            <td>Isolde of the Hawk</td>
+            <td>House of the Hawk</td>
+            <td>isolde@order.com</td>
+            <td><span class="status active">Active</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-003</td>
+            <td>Tristan of the Wolf</td>
+            <td>House of the Wolf</td>
+            <td>tristan@order.com</td>
+            <td><span class="status pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-004</td>
+            <td>Elowen of the Stag</td>
+            <td>House of the Stag</td>
+            <td>elowen@order.com</td>
+            <td><span class="status active">Active</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-005</td>
+            <td>Cedric of the Lion</td>
+            <td>House of the Lion</td>
+            <td>cedric@order.com</td>
+            <td><span class="status squire">Squire</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-006</td>
+            <td>Mira of the Hawk</td>
+            <td>House of the Hawk</td>
+            <td>mira@order.com</td>
+            <td><span class="status active">Active</span></td>
+          </tr>
+          <tr>
+            <td>K-2026-007</td>
+            <td>Roland of the Stag</td>
+            <td>House of the Stag</td>
+            <td>roland@order.com</td>
+            <td><span class="status pending">Pending</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="info-bar">
+    <strong>Registry Notice</strong>
+    Complete all required fields before swearing your oath. Ensure the information you provide is accurate — the Order keeps its word.
+  </div>
+
+  <footer>
+    <p>Mabeza, Aldrin — 2-IT3</p>
+  </footer>
+
+</body>
+</html>

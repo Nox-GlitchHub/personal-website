@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Sign-Up</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .signup-box {
+            width: 500px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #17213a;
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 18px;
+            margin-bottom: 7px;
+            color: #17213a;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #1e5bd7;
+        }
+        .error {
+            border-color: red;
+        }
+        .valid {
+            border-color: green;
+        }
+        .message {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .error-message {
+            color: red;
+        }
+        .success-message {
+            color: green;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 8px;
+            background-color: #145bd7;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d48ae;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-box">
+
+        <h1>Complete Sign-Up</h1>
+
+        <form id="signupForm">
+
+            <label for="username">
+                Username (alphanumeric, 4-12 chars)
+            </label>
+            <input type="text" id="username" placeholder="e.g. coder99">
+            <div id="usernameMessage" class="message"></div>
+            <label for="phone">
+                Phone Number (10 digits)
+            </label>
+
+            <input type="text" id="phone" placeholder="e.g. 5551234567">
+            <div id="phoneMessage" class="message"></div>
+
+            <label for="password">
+                Password (min 8 chars, 1 letter & 1 number)
+            </label>
+            <input type="password" id="password">
+            <div id="passwordMessage" class="message"></div>
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+          
+            <input type="password" id="confirmPassword">
+            <div id="confirmMessage" class="message"></div>
+            <button type="submit">Create Account</button>
+
+        </form>
+    </div>
+    <script>
+
+        const form = document.getElementById("signupForm");
+
+        const username = document.getElementById("username");
+        const phone = document.getElementById("phone");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+
+        const usernameMessage = document.getElementById("usernameMessage");
+        const phoneMessage = document.getElementById("phoneMessage");
+        const passwordMessage = document.getElementById("passwordMessage");
+        const confirmMessage = document.getElementById("confirmMessage");
+
+
+        function checkUsername() {
+
+            let value = username.value;
+
+            if (value === "") {
+
+                username.className = "error";
+                usernameMessage.textContent =
+                    "Please enter a username.";
+                usernameMessage.className =
+                    "message error-message";
+
+                return false;
+            }
+
+            if (value.length < 4 || value.length > 12) {
+              
+                username.className = "error";
+                usernameMessage.textContent =
+                    "Username must be 4-12 characters.";
+                usernameMessage.className =
+                    "message error-message";
+                return false;
+            }
+
+            if (!/^[a-zA-Z0-9]+$/.test(value)) {
+
+                username.className = "error";
+                usernameMessage.textContent =
+                    "Username can only contain letters and numbers.";
+                usernameMessage.className =
+                    "message error-message";
+                return false;
+            }
+
+            username.className = "valid";
+            usernameMessage.textContent =
+                "Username is valid.";
+            usernameMessage.className =
+                "message success-message";
+
+            return true;
+        }
+
+
+        function checkPhone() {
+
+            let value = phone.value;
+
+            if (value === "") {
+
+                phone.className = "error";
+                phoneMessage.textContent =
+                    "Please enter your phone number.";
+                phoneMessage.className =
+                    "message error-message";
+                return false;
+            }
+
+            if (!/^[0-9]{10}$/.test(value)) {
+
+                phone.className = "error";
+                phoneMessage.textContent =
+                    "Please enter a valid 10-digit phone number.";
+                phoneMessage.className =
+                    "message error-message";
+
+                return false;
+            }
+
+            phone.className = "valid";
+
+            phoneMessage.textContent =
+                "Phone number is valid.";
+
+            phoneMessage.className =
+                "message success-message";
+
+            return true;
+        }
+
+        function checkPassword() {
+
+            let value = password.value;
+
+            if (value === "") {
+
+                password.className = "error";
+                passwordMessage.textContent =
+                    "Please enter a password.";
+                passwordMessage.className =
+                    "message error-message";
+                return false;
+            }
+
+            if (value.length < 8) {
+                password.className = "error";
+                passwordMessage.textContent =
+                    "Password must be at least 8 characters.";
+                passwordMessage.className =
+                    "message error-message";
+                return false;
+            }
+            if (!/[a-zA-Z]/.test(value) ||
+                !/[0-9]/.test(value)) {
+                password.className = "error";
+                passwordMessage.textContent =
+                    "Password needs at least 1 letter and 1 number.";
+                passwordMessage.className =
+                    "message error-message";
+                return false;
+            }
+            password.className = "valid";
+            passwordMessage.textContent =
+                "Password is valid.";
+            passwordMessage.className =
+                "message success-message";
+            return true;
+        }
+        function checkConfirmPassword() {
+
+            let value = confirmPassword.value;
+
+            if (value === "") {
+                confirmPassword.className = "error";
+                confirmMessage.textContent =
+                    "Please confirm your password.";
+                confirmMessage.className =
+                    "message error-message";
+                return false;
+            }
+            if (value !== password.value) {
+                confirmPassword.className = "error";
+                confirmMessage.textContent =
+                    "Passwords do not match.";
+                confirmMessage.className =
+                    "message error-message";
+                return false;
+            }
+            confirmPassword.className = "valid";
+            confirmMessage.textContent =
+                "Passwords match.";
+            confirmMessage.className =
+                "message success-message";
+            return true;
+        }
+        username.addEventListener("input", checkUsername);
+        phone.addEventListener("input", checkPhone);
+        password.addEventListener("input", function() {
+
+            checkPassword();
+            checkConfirmPassword();
+        });
+        confirmPassword.addEventListener(
+            "input",
+            checkConfirmPassword
+        );
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let usernameValid = checkUsername();
+            let phoneValid = checkPhone();
+            let passwordValid = checkPassword();
+            let confirmValid = checkConfirmPassword();
+
+            if (
+                usernameValid &&
+                phoneValid &&
+                passwordValid &&
+                confirmValid
+            ) {
+                alert("Account created successfully!");
+            }
+        });
+    </script>
+</body>
+</html>

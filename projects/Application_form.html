@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School of Witchcraft & Wizardry — Application for Admission</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English:ital@0;1&display=swap');
+
+  :root {
+    --parchment: #ece0c4;
+    --parchment-dark: #ddcda1;
+    --ink: #2b1d10;
+    --ink-soft: #4a3a24;
+    --wax: #8a1f1f;
+    --gold: #a9812f;
+    --line: rgba(43, 29, 16, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top, #3a2a17, #1c130a 70%);
+    font-family: 'IM Fell English', serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 620px;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,0.15), transparent 40%),
+      var(--parchment);
+    background-blend-mode: overlay;
+    border: 2px solid var(--ink);
+    box-shadow: 0 0 0 6px var(--parchment-dark), 0 20px 60px rgba(0,0,0,0.6);
+    padding: 46px 48px 40px;
+    position: relative;
+  }
+
+  .sheet::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--gold);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .crest {
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .crest-mark {
+    font-size: 34px;
+    display: inline-block;
+    filter: sepia(0.4);
+  }
+
+  .school {
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    margin: 6px 0 2px;
+  }
+
+  .subschool {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 22px;
+  }
+
+  hr.rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 22px 0;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 500;
+    font-size: 21px;
+    text-align: center;
+    margin: 0 0 4px;
+    letter-spacing: 0.02em;
+  }
+
+  p.intro {
+    text-align: center;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+    line-height: 1.55;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--wax);
+    text-transform: uppercase;
+  }
+
+  .hint {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-soft);
+    opacity: 0.8;
+    margin-top: -2px;
+  }
+
+  input, select, textarea {
+    font-family: 'IM Fell English', serif;
+    font-size: 16px;
+    padding: 9px 6px;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--line);
+    color: var(--ink);
+    outline: none;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234a3a24' stroke-width='2'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 24px;
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 70px;
+    line-height: 1.5;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    border-bottom-color: var(--wax);
+  }
+
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .radio-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin-top: 6px;
+  }
+
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
+  }
+
+  .radio-option input {
+    accent-color: var(--wax);
+    width: 15px;
+    height: 15px;
+  }
+
+  .signature-row {
+    display: flex;
+    gap: 24px;
+  }
+  .signature-row .field { flex: 1; }
+
+  .submit-row {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--wax);
+    color: var(--parchment);
+    border: 1px solid var(--ink);
+    padding: 13px 34px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  .submit:hover {
+    background: #6f1717;
+    transform: translateY(-1px);
+  }
+
+  .submit:active { transform: translateY(0); }
+
+  .submit:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .fine-print {
+    margin-top: 22px;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 520px) {
+    .sheet { padding: 34px 24px 30px; }
+    .signature-row { flex-direction: column; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="sheet">
+    <div class="crest">
+      <span class="crest-mark">🦁 🦅 🦡 🐍</span>
+    </div>
+    <div class="school">School of Witchcraft &amp; Wizardry</div>
+    <div class="subschool">Est. circa the Dark Ages — Applications Office, West Tower</div>
+
+    <hr class="rule">
+
+    <h1>Application for Admission</h1>
+    <p class="intro">Kindly complete this form in ink that does not fade, vanish,<br>or bite. Owl delivery only — no Muggle post accepted.</p>
+
+    <form>
+      <div class="signature-row">
+        <div class="field">
+          <label for="fname">Full name</label>
+          <input id="fname" type="text" placeholder="As it appears on your birth scroll">
+        </div>
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input id="dob" type="text" placeholder="DD / MM / YYYY">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="address">Owl-post address</label>
+        <input id="address" type="text" placeholder="Cupboard, cottage, castle, or otherwise">
+      </div>
+
+      <div class="field">
+        <label for="blood">Parentage</label>
+        <select id="blood">
+          <option value="">Select one</option>
+          <option>Wizard-born</option>
+          <option>Muggle-born</option>
+          <option>Half-and-half</option>
+          <option>Unsure — raised by relatives who disapproved</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="wand">First accidental magic (describe briefly)</label>
+        <textarea id="wand" placeholder="e.g. turned a teacher's wig blue, regrew a toad's leg, levitated a sibling"></textarea>
+      </div>
+
+      <fieldset class="field">
+        <label>House preference</label>
+        <div class="hint">The Hat rarely listens, but it's polite to ask.</div>
+        <div class="radio-row">
+          <label class="radio-option"><input type="radio" name="house"> Gryffindor</label>
+          <label class="radio-option"><input type="radio" name="house"> Slytherin</label>
+          <label class="radio-option"><input type="radio" name="house"> Ravenclaw</label>
+          <label class="radio-option"><input type="radio" name="house"> Hufflepuff</label>
+          <label class="radio-option"><input type="radio" name="house"> Surprise me</label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label for="pet">Accompanying creature</label>
+        <select id="pet">
+          <option value="">Select one</option>
+          <option>Owl</option>
+          <option>Cat</option>
+          <option>Toad</option>
+          <option>Rat (please explain)</option>
+          <option>None — still saving up</option>
+        </select>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="submit">Send by Owl</button>
+      </div>
+    </form>
+
+    <p class="fine-print">Acceptance letters are delivered by owl within 4–6 weeks,<br>or immediately upon being trapped in a hut on a rock in a storm.</p>
+  </div>
+
+</body>
+</html>

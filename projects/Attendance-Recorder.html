@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Class Attendance</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        #mainWrapper {
+            width: 600px;
+            margin: 50px auto;
+        }
+
+        #listSection {
+            margin-top: 30px;
+        }
+
+        input {
+            padding: 10px;
+            width: 280px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: teal;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #tableHead th {
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body id="pageBody">
+    <div id="mainWrapper">
+
+        <div id="formSection">
+            <h1 id="mainTitle">Class Attendance</h1>
+
+            <input type="text" id="studentName" name="studentFullname" placeholder="Enter Fullname">
+            <button type="button" id="addBtn">Add Attendance</button>
+        </div>
+
+        <div id="listSection">
+            <h1 id="listTitle">Attendance List</h1>
+
+            <table id="attendanceTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th>No.</th>
+                        <th>Student Name</th>
+                        <th>Time Recorded</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        let addButton = document.querySelector('#addBtn');
+        let nameInput = document.querySelector('#studentName');
+        let tableBody = document.querySelector('#tableBody');
+
+        let count = 0;
+
+        addButton.addEventListener("click", () => {
+
+            const studentValue = nameInput.value;
+
+            if (studentValue === "") {
+                alert("Please type your name first!");
+            }
+            else {
+                count++;
+
+                const currentTime = new Date();
+
+                const timeRecorded = currentTime.toLocaleTimeString('en-PH', { hour12: true });
+
+                tableBody.innerHTML += `<tr><td>${count}</td><td>${studentValue}</td><td>${timeRecorded}</td></tr>`;
+                nameInput.value = "";
+            }
+        })
+    </script>
+</body>
+
+</html>

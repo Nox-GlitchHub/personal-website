@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Character Counter</title>
+</head>
+
+<body>
+
+<h2 style="text-align: center;">Live Character Counter</h2>
+
+<b>Enter your message:</b><br>
+
+<textarea id="message" rows="5" cols="40"
+    maxlength="150" oninput="countCharacters()"></textarea>
+
+<p id="limit">0 / 150</p>
+
+<h3>Live Preview</h3>
+
+<textarea id="preview" rows="5" cols="40" readonly></textarea>
+
+<h3>Character Count</h3>
+
+<p id="counter"></p>
+
+<script>
+
+function countCharacters() {
+
+    let message = document.getElementById("message").value;
+    let preview = document.getElementById("preview");
+    let limit = document.getElementById("limit");
+
+    preview.value = message;
+
+    limit.textContent = message.length + " / 150";
+
+    let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+
+    for (let i = 0; i < characters.length; i++) {
+
+        let count = 0;
+
+        for (let j = 0; j < message.length; j++) {
+
+            if (message[j].toUpperCase() == characters[i]) {
+                count++;
+            }
+
+        }
+
+        result += characters[i] + " = " + count + "　";
+    }
+
+    document.getElementById("counter").textContent = result;
+}
+
+</script>
+
+</body>
+</html>
