@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact | My Website</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About me</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main>
+    <h1>Contact</h1>
+    <p>You can reach me through any of these:</p>
+
+    <ul class="contact-list">
+      <li>Email: <a href="mailto:agmabeza@ccc.edu.ph">agmabeza@ccc.edu.ph</a></li>
+      <li>Contact number: <a href="tel:+639959650839">+63 995 965 0839</a></li>
+      <li>Facebook: <a href="https://www.facebook.com/share/1FkrJ4NAXD/" target="_blank">Aldrin Mabeza</a></li>
+      <li>Instagram: <a href="https://www.instagram.com/milko_hi?stkn=MWFxaHEzcnl5YWt0OA==" target="_blank">milko_hi</a></li>
+      <li>X: <a href="https://x.com/Rinrin_Adin" target="_blank">Rinrin_Adin</a></li>
+      <li>Telegram: <a href="https://t.me/Milko_hi" target="_blank">milko_hi</a></li>
+    </ul>
+
+    <h2 class="form-title">Slide into my dms?</h2>
+
+    <form id="contact-form" class="contact-form" action="https://formsubmit.co/agmabeza@ccc.edu.ph" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <input type="hidden" name="_subject" value="New message from my website">
+
+      <button type="submit">Send message</button>
+    </form>
+  </main>
+
+</body>
+</html>
